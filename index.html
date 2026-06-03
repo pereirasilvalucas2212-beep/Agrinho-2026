@@ -3,110 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2026 - Sustentabilidade no Campo</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Agricultura Sustentável - Preservação da Natureza</title>
+    <style>
+        :root {
+            --primary-color: #1b5e20;
+            --secondary-color: #2e7d32;
+            --accent-color: #4caf50;
+            --warning-color: #ff9800;
+            --bg-color: #f1f8f4;
+            --text-color: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navegação */
+        nav {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.7rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-pequeno {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+            border-top: 5px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+
+        .card-pequeno:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-pequeno .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-pequeno h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .passos {
+            list-style: none;
+        }
+
+        .passos li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .passos li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--accent-color);
+            color: var(--white);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .alerta {
+            background-color: #fff3e0;
+            border-left: 5px solid var(--warning-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+        }
+
+        .alerta h4 {
+            color: var(--warning-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .beneficios {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .beneficio-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f0f8f4;
+            border-radius: 4px;
+        }
+
+        .beneficio-item .emoji {
+            font-size: 2rem;
+            min-width: 2.5rem;
+        }
+
+        .beneficio-item div h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .destaque {
+            background-color: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <!-- Navegação -->
-    <nav class="navbar">
+    <nav>
         <div class="container">
-            <div class="logo">🌱 Agrinho 2026</div>
-            <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#objetivos">Objetivos</a></li>
-                <li><a href="#contato">Contato</a></li>
+            <div class="logo">🌿 Agricultura Sustentável</div>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#importancia">Importância</a></li>
+                <li><a href="#praticas">Práticas</a></li>
+                <li><a href="#desafios">Desafios</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Seção Hero -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Agrinho 2026</h1>
-            <p>Transformando a agricultura através da sustentabilidade</p>
-            <button class="cta-button">Saiba Mais</button>
-        </div>
-    </section>
+    <!-- Header -->
+    <header id="inicio">
+        <h1>🌍 Preservação da Natureza na Agricultura</h1>
+        <p>Construindo um futuro sustentável através de práticas agrícolas responsáveis</p>
+    </header>
 
-    <!-- Seção Sobre -->
-    <section id="sobre" class="sobre">
-        <div class="container">
-            <h2>Sobre o Projeto</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-icon">🌾</div>
-                    <h3>Agricultura Sustentável</h3>
-                    <p>Promovemos práticas agrícolas que preservam o meio ambiente e garantem produtividade.</p>
+    <main>
+        <!-- Seção Introdução -->
+        <section class="card">
+            <h2>A Agricultura e o Meio Ambiente</h2>
+            <p>A agricultura é uma das atividades humanas mais impactantes no meio ambiente. Porém, quando praticada de forma sustentável, pode ser uma grande aliada na preservação da natureza e na garantia de um futuro seguro para as próximas gerações.</p>
+            <p>A agricultura sustentável busca equilibrar a produção de alimentos com a conservação dos recursos naturais, promovendo práticas que respeitam a biodiversidade, o solo, a água e o clima.</p>
+        </section>
+
+        <!-- Seção Importância -->
+        <section id="importancia" class="card">
+            <h2>Por que Preservar a Natureza na Agricultura?</h2>
+            
+            <div class="cards-grid">
+                <div class="card-pequeno">
+                    <div class="icon">💧</div>
+                    <h3>Recursos Hídricos</h3>
+                    <p>Proteger as fontes de água garante abastecimento para as futuras gerações e mantém os ecossistemas aquáticos.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💚</div>
-                    <h3>Compromisso Ambiental</h3>
-                    <p>Reduzindo emissões de carbono e protegendo a biodiversidade de nossas terras.</p>
+                <div class="card-pequeno">
+                    <div class="icon">🌱</div>
+                    <h3>Fertilidade do Solo</h3>
+                    <p>Um solo saudável é fundamental para colheitas abundantes e sustentáveis ao longo dos anos.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">👨‍🌾</div>
-                    <h3>Desenvolvimento Social</h3>
-                    <p>Capacitando agricultores com conhecimento e tecnologia sustentável.</p>
+                <div class="card-pequeno">
+                    <div class="icon">🦋</div>
+                    <h3>Biodiversidade</h3>
+                    <p>Manter a diversidade de espécies garante equilíbrio ecológico e polinização natural das plantas.</p>
+                </div>
+                <div class="card-pequeno">
+                    <div class="icon">🌤️</div>
+                    <h3>Clima Estável</h3>
+                    <p>Práticas sustentáveis reduzem emissões de gases de efeito estufa e combatem o aquecimento global.</p>
+                </div>
+                <div class="card-pequeno">
+                    <div class="icon">👥</div>
+                    <h3>Saúde Humana</h3>
+                    <p>Alimentos produzidos sem poluição garantem segurança alimentar e qualidade de vida.</p>
+                </div>
+                <div class="card-pequeno">
+                    <div class="icon">📈</div>
+                    <h3>Produtividade</h3>
+                    <p>A preservação ambiental garante produtividade agrícola de longo prazo e rentabilidade.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Seção Objetivos -->
-    <section id="objetivos" class="objetivos">
-        <div class="container">
-            <h2>Nossos Objetivos</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker">1</div>
-                    <h3>Educação</h3>
-                    <p>Disseminar conhecimento sobre práticas sustentáveis no campo</p>
+        <!-- Seção Práticas Sustentáveis -->
+        <section id="praticas" class="card">
+            <h2>Práticas de Agricultura Sustentável</h2>
+            
+            <h3>1️⃣ Plantio Direto e Rotação de Culturas</h3>
+            <p>O plantio direto reduz a erosão do solo e mantém sua estrutura, enquanto a rotação de culturas previne o esgotamento de nutrientes e reduz pragas.</p>
+            
+            <h3>2️⃣ Conservação do Solo</h3>
+            <ul>
+                <li>Implementar curvas de nível para evitar erosão</li>
+                <li>Manter cobertura vegetal permanente</li>
+                <li>Utilizar cobertura morta</li>
+                <li>Construir terraços em terrenos inclinados</li>
+            </ul>
+
+            <h3>3️⃣ Manejo Integrado de Pragas</h3>
+            <p>Reduzir o uso de pesticidas químicos através de:</p>
+            <ul>
+                <li>Controle biológico com predadores naturais</li>
+                <li>Técnicas de confusão sexual de insetos</li>
+                <li>Uso de armadilhas e barreiras físicas</li>
+                <li>Adubação balanceada para plantas mais resistentes</li>
+            </ul>
+
+            <h3>4️⃣ Agricultura Orgânica</h3>
+            <p>Produção sem uso de agrotóxicos sintéticos, promovendo:</p>
+            <ul>
+                <li>Compostagem de resíduos</li>
+                <li>Adubação natural com esterco</li>
+                <li>Uso de plantas leguminosas para fixação de nitrogênio</li>
+                <li>Biodiversidade aumentada nas propriedades</li>
+            </ul>
+
+            <h3>5️⃣ Conservação de Água</h3>
+            <ul>
+                <li>Sistemas de irrigação eficientes (gotejamento, microaspersão)</li>
+                <li>Construção de açudes e cisternas</li>
+                <li>Proteção de nascentes e matas ciliares</li>
+                <li>Reuso de água em processos agrícolas</li>
+            </ul>
+
+            <h3>6️⃣ Agrofloresta</h3>
+            <p>Integrar árvores frutíferas e plantas nativas com culturas agrícolas, criando:</p>
+            <ul>
+                <li>Sistemas produtivos diversificados</li>
+                <li>Microclima favorável ao desenvolvimento</li>
+                <li>Sequestro de carbono da atmosfera</li>
+                <li>Proteção contra erosão e secas</li>
+            </ul>
+
+            <h3>7️⃣ Manutenção de Áreas de Preservação</h3>
+            <ul>
+                <li>Proteger matas ciliares ao redor de rios e nascentes</li>
+                <li>Manter reservas legais na propriedade</li>
+                <li>Criar corredores ecológicos</li>
+                <li>Permitir regeneração natural de áreas degradadas</li>
+            </ul>
+
+            <div class="destaque">
+                <strong>💡 Dica:</strong> A combinação de várias práticas é mais eficaz do que aplicar apenas uma. Comece devagar e adapte as técnicas à realidade da sua propriedade.
+            </div>
+        </section>
+
+        <!-- Seção Benefícios -->
+        <section class="card">
+            <h2>Benefícios da Agricultura Sustentável</h2>
+            
+            <div class="beneficios">
+                <div class="beneficio-item">
+                    <div class="emoji">♻️</div>
+                    <div>
+                        <h4>Ciclos Naturais Preservados</h4>
+                        <p>Mantém o equilíbrio dos ecossistemas e permite a regeneração natural dos recursos.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">2</div>
-                    <h3>Inovação</h3>
-                    <p>Implementar tecnologias modernas e ecológicas</p>
+
+                <div class="beneficio-item">
+                    <div class="emoji">💰</div>
+                    <div>
+                        <h4>Redução de Custos</h4>
+                        <p>Menor uso de insumos químicos resultam em economia a longo prazo.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">3</div>
-                    <h3>Crescimento</h3>
-                    <p>Expandir o impacto positivo em toda a comunidade agrícola</p>
+
+                <div class="beneficio-item">
+                    <div class="emoji">🥗</div>
+                    <div>
+                        <h4>Alimentos mais Saudáveis</h4>
+                        <p>Produtos livres ou com redução de resíduos químicos, mais nutritivos e seguros.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">4</div>
-                    <h3>Impacto</h3>
-                    <p>Criar um legado sustentável para gerações futuras</p>
+
+                <div class="beneficio-item">
+                    <div class="emoji">🏞️</div>
+                    <div>
+                        <h4>Preservação da Biodiversidade</h4>
+                        <p>Mantém habitats naturais para fauna e flora, essenciais para o equilíbrio ambiental.</p>
+                    </div>
+                </div>
+
+                <div class="beneficio-item">
+                    <div class="emoji">📚</div>
+                    <div>
+                        <h4>Conhecimento Tradicional</h4>
+                        <p>Valoriza saberes locais e práticas ancestrais de agricultores familiares.</p>
+                    </div>
+                </div>
+
+                <div class="beneficio-item">
+                    <div class="emoji">🌍</div>
+                    <div>
+                        <h4>Ação Climática</h4>
+                        <p>Contribui na redução de gases de efeito estufa e combate às mudanças climáticas.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Seção Contato -->
-    <section id="contato" class="contato">
-        <div class="container">
-            <h2>Entre em Contato</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Seu Nome" required>
-                <input type="email" placeholder="Seu Email" required>
-                <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
-                <button type="submit" class="submit-btn">Enviar Mensagem</button>
-            </form>
-        </div>
-    </section>
+        <!-- Seção Desafios -->
+        <section id="desafios" class="card">
+            <h2>Desafios na Transição para Agricultura Sustentável</h2>
+            
+            <h3>🎯 Principais Desafios:</h3>
+            <ul>
+                <li><strong>Custos Iniciais:</strong> Implantação de técnicas sustentáveis requer investimento inicial</li>
+                <li><strong>Falta de Conhecimento:</strong> Necessidade de capacitação e acompanhamento técnico</li>
+                <li><strong>Mercado Limitado:</strong> Demanda por produtos sustentáveis ainda é menor</li>
+                <li><strong>Pressão Econômica:</strong> Concorrência com produção convencional em larga escala</li>
+                <li><strong>Clima Variável:</strong> Eventos extremos podem afetar colheitas</li>
+                <li><strong>Políticas Públicas:</strong> Falta de incentivos governamentais adequados</li>
+            </ul>
 
-    <!-- Rodapé -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Agrinho - Sustentabilidade no Campo. Todos os direitos reservados.</p>
-            <div class="social-links">
-                <a href="#" class="social">Facebook</a>
-                <a href="#" class="social">Instagram</a>
-                <a href="#" class="social">Twitter</a>
+            <h3>✅ Como Superar os Desafios:</h3>
+            <ul>
+                <li>Buscar apoio de extensionistas e agrônomos especializados</li>
+                <li>Participar de grupos de produtores sustentáveis</li>
+                <li>Acessar programas de financiamento e subsídios</li>
+                <li>Investir em certificações de produtos orgânicos</li>
+                <li>Criar associações para venda coletiva</li>
+                <li>Documentar práticas e compartilhar experiências</li>
+            </ul>
+
+            <div class="alerta">
+                <h4>⚠️ Responsabilidade Compartilhada</h4>
+                <p>A transição para agricultura sustentável é responsabilidade de todos: agricultores, governo, consumidores e empresas. Cada um tem um papel importante a desempenhar neste processo.</p>
             </div>
-        </div>
+        </section>
+
+        <!-- Seção Chamada para Ação -->
+        <section class="card" style="text-align: center; background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%); color: var(--white); border-left: none;">
+            <h2 style="color: var(--white); border-bottom-color: rgba(255,255,255,0.3);">Vamos Transformar a Agricultura Juntos!</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Cada pequena ação em favor da natureza faz uma grande diferença. Comece hoje mesmo a implementar práticas sustentáveis em sua propriedade.</p>
+            <p style="font-size: 1rem; opacity: 0.95;">Juntos podemos garantir um futuro próspero e equilibrado para todos! 🌱💚</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Agrinho | Preservação da Natureza na Agricultura</p>
+        <p>Desenvolvido com 💚 para um futuro mais sustentável</p>
+        <p>Comprometido com os Objetivos de Desenvolvimento Sustentável (ODS)</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
